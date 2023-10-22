@@ -20,6 +20,16 @@ const OtpSchema = new Schema({
 
 })
 
+//a function to send mail
+
+async function sendVerificationEmail(email,otp){
+	try {
+		
+	} catch (error)  {
+		console.log("error occured while send mail"+error);
+	}
+}
+
 const OTP = model("otp",OtpSchema)
 
 export default OTP
