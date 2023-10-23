@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { connect } = mongoose
 
-const connection = () => {
+const connectionToDB = () => {
 	connect(process.env.MONGODB_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
@@ -14,4 +14,4 @@ const connection = () => {
 		})
 }
 
-export default connection
+export default connectionToDB

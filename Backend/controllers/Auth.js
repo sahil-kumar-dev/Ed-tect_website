@@ -1,13 +1,10 @@
-
-
-//sendOtp
-
-import OTP from "../models/OTP"
-import User from "../models/User"
+import OTP from "../models/OTP.js"
+import User from "../models/User.js"
 import optGenerator from 'otp-generator'
 import bcrypt from 'bcrypt'
-import Profile from "../models/Profie"
-import jwt from ''
+import Profile from "../models/Profie.js"
+import jwt from 'jsonwebtoken'
+//sendOtp
 
 const sendOTP = async (req, res) => {
 
@@ -62,7 +59,10 @@ const sendOTP = async (req, res) => {
 		})
 
 	} catch (error) {
-
+		req.status(400).json({
+			success:false,
+			message:error.message
+		})
 	}
 }
 
@@ -162,7 +162,7 @@ const logIn = async (req, res) => {
 	
 		//validate data
 		if(!email || !password){
-			res.status(400).json({
+			return res.status(400).json({
 				success:false,
 				message:"All fields are required."
 			})
@@ -172,7 +172,7 @@ const logIn = async (req, res) => {
 		const user = await User.findOne({email}).populate("additionalDetails")
 	
 		if(!user){
-			res.status(400).json({
+			return res.status(400).json({
 				success:false,
 				message:"Account dosen't exists please register first."
 			})
@@ -201,7 +201,7 @@ const logIn = async (req, res) => {
 				message:"Logged in successfully"
 			})
 		}else{
-			res.status(400).json({
+			return res.status(400).json({
 				success:false,
 				message:"Incorrect password."
 			})
@@ -222,8 +222,19 @@ const changePassword = async (req,res) =>{
 
 	const {password,confirmPassword} = req.body
 
+	if(!password || !confirmPassword){
+		return res.status(400).json({
+			success:false,
+			message:"All fields are mandatory."
+		})
+	}
 
-
+	if(password != confirmPassword){
+		return res.status(400).json({
+			success:false,
+			message:"Password and confirm password didn't match."
+		})
+	}
 }
 
 export {
