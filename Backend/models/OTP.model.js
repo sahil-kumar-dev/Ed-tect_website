@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mainSender from "../utils/mailSender.js";
+import mainSender from "../utils/mailSender.util.js";
 
 const {Schema, model} = mongoose
 
