@@ -96,3 +96,10 @@ const isAdmin = async (req,res,next) =>{
 		})
 	}
 }
+
+export {
+	auth,
+	isStudent,
+	isInstructor,
+	isAdmin
+}

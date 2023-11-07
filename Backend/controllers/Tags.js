@@ -17,8 +17,32 @@ const createTag =(req,res) =>{
 			description
 		})
 
+		return res.status(200).json({
+			success:true,
+			message:"Tag created successfully."
+		})
 
 	} catch (error) {
-		
+		res.status(500).json({
+			success:false,
+			message:error.message
+		})
+	}
+}
+
+const showAlltags = async (req,res) =>{
+	try {
+		const allTags = await Tag.find({},{name:true,description:true})
+
+		res.status(200).json({
+			success:false,
+			message:"Tags",
+			allTags
+		})
+	} catch (error) {
+		res.status(500).json({
+			success:false,
+			message:error.message
+		})
 	}
 }
