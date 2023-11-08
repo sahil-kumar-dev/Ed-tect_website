@@ -14,7 +14,10 @@ app.use(express.json())
 app.use(urlencoded({extended:true}))
 
 app.use('/ping',(req,res)=>{
-	res.send("pong")
+	res.status(200).json({
+		success:true,
+		message:"Pong"
+	})
 })
 
 app.use('/api/v1/user',userRoute)

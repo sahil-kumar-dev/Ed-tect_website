@@ -1,7 +1,7 @@
-import Course from "../models/Course.js";
-import Tag from "../models/Tags.js";
-import User from "../models/User.js";
-import uploadImageToCloudinary from "../utils/imageUploader.js";
+import Course from "../models/Course.model.js";
+import Tag from "../models/Tags.model.js";
+import User from "../models/User.model.js";
+import uploadImageToCloudinary from "../utils/imageUploader.util.js";
 
 const createCourse = async (req, res) => {
   try {

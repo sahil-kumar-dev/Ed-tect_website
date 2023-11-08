@@ -1,4 +1,4 @@
-import Tag from "../models/Tags.js";
+import Tag from "../models/Tags.model.js";
 
 
 const createTag =(req,res) =>{

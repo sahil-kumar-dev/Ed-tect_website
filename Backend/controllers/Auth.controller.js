@@ -1,8 +1,8 @@
-import OTP from "../models/OTP.js";
-import User from "../models/User.js";
+import OTP from "../models/OTP.model.js";
+import User from "../models/User.model.js";
 import optGenerator from "otp-generator";
 import bcrypt from "bcrypt";
-import Profile from "../models/Profie.js";
+import Profile from "../models/Profie.model.js";
 import jwt from "jsonwebtoken";
 //sendOtp
 
