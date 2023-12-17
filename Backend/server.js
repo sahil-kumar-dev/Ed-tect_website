@@ -1,5 +1,5 @@
 import app from "./app.js";
-import connectionToDB from "./config/dbConfig.js";
+import connectionToDB from "./config/db.config.js";
 
 
 connectionToDB()

@@ -102,4 +102,33 @@ const createCourse = async (req, res) => {
   }
 };
 
-export { createCourse };
+const getAllCourses = async (req, res) => {
+  try {
+    const allCourses = await Course.find(
+      {},
+      {
+        courseName: true,
+        price: true,
+        thumbnail: true,
+        instructor: true,
+        ratingAndReviews: true,
+        studentsEnrolled: true,
+      }
+    )
+      .populate("instrutor")
+      .exec();
+
+    return res.status(200).json({
+      success:true,
+      message:"Data fetched successfully.",
+      data:allCourses
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { createCourse, getAllCourses };
