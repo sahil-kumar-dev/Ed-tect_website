@@ -1,11 +1,11 @@
-import { instance } from '../config/razorpay.config.js'
+import instance from '../config/razorpay.config.js'
 import Course from '../models/Course.model.js'
 import User from '../models/User.model.js'
 import mailSender from '../utils/mailSender.util.js'
 import { Mongoose } from 'mongoose'
 //Todo: make email template to send course purchase email
 
-exports.capturePayment = async (req, res) => {
+const capturePayment = async (req, res) => {
 	//get courseId and user Id
 	const { course_id } = req.body
 	const { user_id } = req.user.id
@@ -73,7 +73,7 @@ exports.capturePayment = async (req, res) => {
 
 //verify signature
 
-exports.verifySignature = async (req, res) => {
+const verifySignature = async (req, res) => {
 	const webhookSecret = "12345678"
 	const signature = req.headers["x-razorpay-signature"]
 
@@ -137,4 +137,9 @@ exports.verifySignature = async (req, res) => {
 		})
 	}
 
+}
+
+export {
+	capturePayment,
+	verifySignature
 }

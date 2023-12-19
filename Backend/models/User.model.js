@@ -3,9 +3,14 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose
 
 const userSchema = new Schema({
-	name: {
+	firstName: {
 		type: String,
-		required: [true, 'Name is required'],
+		required: [true, 'First name is required'],
+		trim: true
+	},
+	lastName: {
+		type: String,
+		required: [true, 'Last Name is required'],
 		trim: true
 	},
 	email: {
@@ -23,14 +28,16 @@ const userSchema = new Schema({
 		required: true
 	},
 	additionalDetails: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Schema.Types.ObjectId,
 		required: true,
 		ref: "Profile"
 	},
-	courses: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "course"
-	},
+	courses: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "course"
+		}
+	],
 	image: {
 		type: String,
 		required: true
@@ -40,7 +47,14 @@ const userSchema = new Schema({
 			type: Schema.Types.ObjectId,
 			ref: "CourseProgress"
 		}
-	]
+	],
+	token:{
+		type:String
+	},
+	resetPasswordExpires:{
+		type:String,
+		default:Date.now()
+	}
 })
 
 const User = model("user", userSchema)

@@ -22,13 +22,13 @@ const CourseSchema = new Schema({
 	},
 	courseContent:[
 		{
-			tyep:Schema.Types.ObjectId,
+			type:Schema.Types.ObjectId,
 			ref:"Section"
 		}
 	],
 	ratingAndReviews:[
 		{
-			tyep:Schema.Types.ObjectId,
+			type:Schema.Types.ObjectId,
 			ref:"RatingAndReview"
 		}
 	],
@@ -38,9 +38,9 @@ const CourseSchema = new Schema({
 	thumbnail:{
 		type:String
 	},
-	tag:{
+	category:{
 		type:Schema.Types.ObjectId,
-		ref:"Tag"
+		ref:"category"
 	},
 	studentsEnrolled:{
 		type:Schema.Types.ObjectId,

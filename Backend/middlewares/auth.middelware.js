@@ -81,7 +81,8 @@ const isInstructor = async (req,res,next) =>{
 const isAdmin = async (req,res,next) =>{
 
 	try {
-		
+		const accountType = req.user
+		console.log(accountType);
 		if(req.user.accountType != 'Admin'){
 			return res.status(400).json({
 				success:false,
@@ -95,6 +96,7 @@ const isAdmin = async (req,res,next) =>{
 			message:error.message
 		})
 	}
+	next()
 }
 
 export {

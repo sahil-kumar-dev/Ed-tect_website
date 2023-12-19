@@ -1,7 +1,8 @@
 import Profile from "../models/Profie.model.js";
 import User from "../models/User.model.js";
+import uploadImageToCloudinary from "../utils/imageUploader.util.js";
 
-exports.updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
 	try {
 		//get data
 
@@ -19,11 +20,11 @@ exports.updateProfile = async (req, res) => {
 		}
 		//find profile
 
-		const userDetails = await User.findById("id")
+		const userDetails = await User.findById(id)
 
 		const profileId = userDetails.additionalDetails
 
-		const profileDetails = Profile.findById(profileId)
+		const profileDetails = await Profile.findById(profileId)
 		//update profile	
 
 		profileDetails.dataOfBirth = dataOfBirth
@@ -52,7 +53,7 @@ exports.updateProfile = async (req, res) => {
 
 //delete account
 
-exports.deleteAccount = async (req, res) => {
+const deleteAccount = async (req, res) => {
 	try {
 		//fetch account id
 
@@ -88,15 +89,41 @@ exports.deleteAccount = async (req, res) => {
 	}
 }
 
-exports.getAllUserDetails = async (req, res) => {
+const updatePicture = async (req, res) => {
 	try {
 		const id = req.user.id
+
+		const imageFile = req.files.displayPicture
+
+		const uploadImage = await uploadImageToCloudinary(imageFile, "profilepictures")
+
+		const imageUrl = uploadImage.secure_url
+
+	 	const response = await User.findByIdAndUpdate(id, { $set: { image: imageUrl } }, { new: true })
+
+		return res.status(200).json({
+			success: true,
+			message: "Profile fetched successfully",
+			data: response
+		})
+	} catch (error) {
+		return res.status(404).json({
+			success: false,
+			message: error.message
+		})
+	}
+}
+
+const getAllUserDetails = async (req, res) => {
+	try {
+		const id = req.user.id
+		console.log(id);
 		const userDetails = await User.findById(id).populate("additionalDetails").exec()
 
 		return res.status(200).json({
-			success: true, 
+			success: true,
 			message: "User details fetched successfully.",
-			data:userDetails
+			data: userDetails
 		})
 
 	} catch (error) {
@@ -105,4 +132,11 @@ exports.getAllUserDetails = async (req, res) => {
 			message: error.message
 		})
 	}
+}
+
+export {
+	updateProfile,
+	deleteAccount,
+	getAllUserDetails,
+	updatePicture
 }
