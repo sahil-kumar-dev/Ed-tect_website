@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const {Schema, model} = mongoose
 
-const tagSchema = new Schema({
+const categorySchema = new Schema({
 
 	name:{
 		type:String,
@@ -18,6 +18,6 @@ const tagSchema = new Schema({
 
 })
 
-const Tag = model("tag",tagSchema)
+const Category = model("category",categorySchema)
 
-export default Tag
+export default Category
