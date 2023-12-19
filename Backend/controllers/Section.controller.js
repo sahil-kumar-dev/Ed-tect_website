@@ -104,3 +104,9 @@ const deleteSection = async(req,res) => {
 		})
 	}
 }
+
+export {
+	createSection,
+	updateSection,
+	deleteSection
+}

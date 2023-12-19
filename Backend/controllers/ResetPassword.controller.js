@@ -79,3 +79,8 @@ const resetPassword = async (req, res, next) => {
 		message:"Passoword reset successful."
 	})
 }
+
+export {
+	resetPassword,
+	resetPasswordToken
+}

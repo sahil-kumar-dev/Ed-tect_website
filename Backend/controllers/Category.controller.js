@@ -1,6 +1,7 @@
 import Category from "../models/Category.model.js";
+import Course from "../models/Course.model.js";
 
-const createTag = (req, res) => {
+const createCategory = (req, res) => {
 	try {
 		const { name, description } = req.body
 
@@ -29,9 +30,9 @@ const createTag = (req, res) => {
 	}
 }
 
-const showAlltags = async (req, res) => {
+const showAllCategory = async (req, res) => {
 	try {
-		const allTags = await Tag.find({}, { name: true, description: true })
+		const allTags = await Category.find({}, { name: true, description: true })
 
 		res.status(200).json({
 			success: false,
@@ -72,19 +73,27 @@ const categoryPageDetails = async (req, res) => {
 		).populate("courses")
 			.exec()
 		//get top selling courses 
+		const topSellingCourses = await Course.find().sort({ studentsEnrolled: 1 })
 
 		//return response
 		return res.status(200).json({
 			success: true,
 			data: {
 				selectedCategory,
-				differentCategories
+				differentCategories,
+				topSellingCourses
 			}
 		})
 	} catch (error) {
 		return res.status(400).json({
-			success:false,
-			message:error.message
+			success: false,
+			message: error.message
 		})
 	}
+}
+
+export {
+	createCategory,
+	showAllCategory,
+	categoryPageDetails
 }

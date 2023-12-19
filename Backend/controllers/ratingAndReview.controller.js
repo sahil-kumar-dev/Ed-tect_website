@@ -140,3 +140,9 @@ const getAllRating = async (req,res) => {
 		
 	}
 }
+
+export {
+	getAllRating,
+	createRating,
+	getAverageRating
+}
