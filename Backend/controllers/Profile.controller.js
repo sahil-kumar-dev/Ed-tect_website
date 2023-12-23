@@ -6,7 +6,7 @@ const updateProfile = async (req, res) => {
 	try {
 		//get data
 
-		const { dataOfBirth = "", about = "", contactNumber, gender } = req.body
+		const { dateOfBirth = "", about = "", contactNumber, gender } = req.body
 		//get userId
 
 		const id = req.user.id
@@ -27,7 +27,7 @@ const updateProfile = async (req, res) => {
 		const profileDetails = await Profile.findById(profileId)
 		//update profile	
 
-		profileDetails.dataOfBirth = dataOfBirth
+		profileDetails.dateOfBirth = dateOfBirth
 		profileDetails.about = about
 		profileDetails.contactNumber = contactNumber
 		profileDetails.gender = gender
@@ -57,11 +57,12 @@ const deleteAccount = async (req, res) => {
 	try {
 		//fetch account id
 
-		const { id } = req.user.id
+		const { id } = req.user
 
 		//validate id
-		const userDetails = await User.findById(id)
 
+		const userDetails = await User.findById(id)
+		// console.log(req.user)
 		if (!userDetails) {
 			return res.status(400).json({
 				success: false,
@@ -70,7 +71,6 @@ const deleteAccount = async (req, res) => {
 		}
 
 		//delete profile
-
 		await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails })
 
 		//delete user

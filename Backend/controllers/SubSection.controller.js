@@ -2,7 +2,7 @@ import SubSection from '../models/SubSection.model.js'
 import Section from '../models/Section.model.js'
 import uploadImageToCloudinary from '../utils/imageUploader.util.js'
 
-exports.createSubSection = async (req, res) => {
+const createSubSection = async (req, res) => {
 	try {
 
 		//fetch data
@@ -11,7 +11,6 @@ exports.createSubSection = async (req, res) => {
 		//extract file
 
 		const video = req.files.videoFile
-
 		//validation
 
 		if (!sectionId || !title || !timeDuration || !description || !video) {
@@ -22,10 +21,10 @@ exports.createSubSection = async (req, res) => {
 		}
 		//upload to cloudinary
 
-		const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME)
+		const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME|| "vidoes")
 
 		//create a sub section
-
+		console.log(uploadDetails);
 		const subSectionDetails = await SubSection.create({
 			title,
 			timeDuration,
@@ -47,7 +46,14 @@ exports.createSubSection = async (req, res) => {
 			{ new: true })
 
 		//return response
+
+		return res.status(200).json({
+			success:true,
+			message:"Sub Section added successfully.",
+			subSectionDetails
+		})
 	} catch (error) {
+		console.log("err",error)
 		return res.status(400).json({
 			success: false,
 			message: error.message
@@ -58,3 +64,5 @@ exports.createSubSection = async (req, res) => {
 //update subsection 
 
 //delete subsection
+
+export {createSubSection}

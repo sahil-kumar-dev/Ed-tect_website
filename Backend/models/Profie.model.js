@@ -6,7 +6,7 @@ const profileSchema = new Schema ({
 	gender:{
 		type:String
 	},
-	dataOfBirth:{
+	dateOfBirth:{
 		type:String
 	},
 	about:{

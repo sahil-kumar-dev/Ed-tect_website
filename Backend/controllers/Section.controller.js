@@ -27,7 +27,7 @@ const createSection = async (req, res) => {
 		)
 
 		return res.status(200).json({
-			success: false,
+			success: true,
 			message: "Section created succesfully.",
 			updateCourseDetails
 		})

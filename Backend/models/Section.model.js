@@ -8,7 +8,6 @@ const sectionSchema = new Schema({
 	},
 	subSection:{
 		type:Schema.Types.ObjectId,
-		required:true,
 		ref:"SubSection"
 	}
 })

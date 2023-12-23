@@ -2,6 +2,7 @@ import mailSender from "../utils/mailSender.util.js";
 import User from "../models/User.model.js";
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
+import resetPasswordTemplate from "../Email/resetPassword.template.js";
 
 const resetPasswordToken = async (req, res) => {
 	try {
@@ -26,7 +27,7 @@ const resetPasswordToken = async (req, res) => {
 
 		const url = `http://localhost:5500/update-password/${token}`
 
-		await mailSender(email, "Password reset link", `password reset link ${url}`)
+		await mailSender(email, "Password reset link", resetPasswordTemplate(url))
 
 		return res.status(200).json({
 			success: true,

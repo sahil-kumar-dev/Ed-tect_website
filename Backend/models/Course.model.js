@@ -14,16 +14,16 @@ const CourseSchema = new Schema({
 	},
 	instructor:{
 		type:Schema.Types.ObjectId,
-		ref:"User",
+		ref:"user",
 		required:true
 	},
-	whatWillYourLearn:{
+	whatYouWillLearn:{
 		type:String
 	},
 	courseContent:[
 		{
 			type:Schema.Types.ObjectId,
-			ref:"Section"
+			ref:"section"
 		}
 	],
 	ratingAndReviews:[
@@ -38,13 +38,15 @@ const CourseSchema = new Schema({
 	thumbnail:{
 		type:String
 	},
+	tag:{
+		type:Array,
+	},
 	category:{
 		type:Schema.Types.ObjectId,
 		ref:"category"
 	},
 	studentsEnrolled:{
 		type:Schema.Types.ObjectId,
-		required:true,
 		ref:"User"
 	}
 })

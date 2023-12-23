@@ -36,7 +36,7 @@ const showAllCategory = async (req, res) => {
 
 		res.status(200).json({
 			success: false,
-			message: "Tags",
+			message: "All categories fetched successfully.",
 			allTags
 		})
 	} catch (error) {

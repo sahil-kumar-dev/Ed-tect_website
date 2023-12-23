@@ -30,16 +30,6 @@ const sendOTP = async (req, res) => {
 		});
 		
 		//check unique otp or not
-		
-		const result = await OTP.findOne({ otp: otp });
-		
-		// while (!result) {
-			//otp = optGenerator.generate(6, {
-				//     upperCaseAlphabets: false,
-				//     lowerCaseAlphabets: false,
-				//     specialChars: false,
-				//   });
-				// }
 				
 		const optBody = await OTP.create({
 			email,

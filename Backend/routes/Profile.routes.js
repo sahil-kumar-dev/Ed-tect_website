@@ -4,7 +4,7 @@ import {deleteAccount, getAllUserDetails, updatePicture, updateProfile} from '..
 
 const router = Router()
 
-router.delete("/deleteProfile",deleteAccount)
+router.delete("/deleteProfile",auth,deleteAccount)
 router.put("/updateProfile",auth,updateProfile)
 router.put("/updateDisplayPicture",auth,updatePicture)
 router.get("/getUserDetails",auth,getAllUserDetails)

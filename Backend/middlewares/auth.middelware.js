@@ -20,7 +20,7 @@ const auth = async (req,res,next) =>{
 		} catch (error) {
 			return res.status(401).json({
 				success:false,
-				message:'token is invalid'
+				message:'Session expired,Please login again.'
 			})
 		}
 		
@@ -53,6 +53,7 @@ const isStudent = async (req,res,next) =>{
 			message:error.message
 		})
 	}
+	next()
 }
 
 //isInstructor
@@ -60,7 +61,6 @@ const isStudent = async (req,res,next) =>{
 const isInstructor = async (req,res,next) =>{
 
 	try {
-		
 		if(req.user.accountType != 'Instructor'){
 			return res.status(400).json({
 				success:false,
@@ -74,6 +74,7 @@ const isInstructor = async (req,res,next) =>{
 			message:error.message
 		})
 	}
+	next()
 }
 
 //isAdmin

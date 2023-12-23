@@ -42,8 +42,6 @@ app.use('/ping',(req,res)=>{
 	})
 })
 
-
-
 app.all("*",(req,res)=>{
 	res.send("404 not found")
 })
