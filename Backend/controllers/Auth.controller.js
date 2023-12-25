@@ -28,15 +28,15 @@ const sendOTP = async (req, res) => {
 			lowerCaseAlphabets: false,
 			specialChars: false,
 		});
-		
+
 		//check unique otp or not
-				
+
 		const optBody = await OTP.create({
 			email,
 			otp,
 		});
 
-		console.log(typeof(email));
+		console.log(typeof (email));
 
 		optBody.save()
 		//return response
@@ -107,7 +107,7 @@ const signUp = async (req, res) => {
 			});
 		}
 
-		if(findOtp.otp != otp){
+		if (findOtp.otp != otp) {
 			return res.status(400).json({
 				success: false,
 				message: "Otp dosen't matched.",
@@ -137,7 +137,7 @@ const signUp = async (req, res) => {
 		return res.status(200).json({
 			success: true,
 			message: "User registered successfully.",
-			data:user,
+			data: user,
 		});
 	} catch (error) {
 		res.status(400).json({
@@ -183,7 +183,7 @@ const logIn = async (req, res) => {
 			});
 
 			const options = {
-				expiresIn:"3h"
+				expiresIn: "3h"
 			}
 
 			user.token = token;

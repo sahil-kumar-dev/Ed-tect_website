@@ -47,7 +47,7 @@ const resetPasswordTemplate = (link) => {
 	
 	<body>
 		<div class="container">
-		<h2>StudyNotion</h2>
+		<h2>Learn Code Online</h2>
 		<h4>Reset Password Link</h4>
 		<p>Your reset password link is <a href="${link}">${link}</a></p>
 		<footer>

@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,body{
+	overflow-x:hidden;
+}
+.highlighted-text{
+	background-clip: text;
+}
+
+.homepage-bg{
+	background: url("https://studynotion-frontend.vercel.app/static/media/bghome.de04eae287ff1d29f0b1.svg");
+}

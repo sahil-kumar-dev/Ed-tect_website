@@ -53,7 +53,7 @@ const sendOtpTemplate = (otp) => {
 </head>
 <body>
 	<div class="container">
-		<h2>StudyNotion</h2>
+		<h2>Learn Code Online</h2>
 		<h4>OTP Verification Email</h4>
 		<p>Thank you for registering with StudyNotion. To complete your registration, please <br> use the following OTP
 			&lpar;One-Time-Password&rpar; to verify your account.</p>
