@@ -1,3 +1,5 @@
+/* The above code is a Node.js application that includes controllers for user authentication and
+registration functionalities. Here is a summary of what each controller does: */
 const bcrypt = require("bcrypt")
 const User = require("../models/User")
 const OTP = require("../models/OTP")

@@ -1,3 +1,13 @@
+/**
+ * The above functions handle creating categories, showing all categories, and providing details for a
+ * specific category page including related courses and top-selling courses.
+ * @param max - The `max` parameter in the `getRandomInt` function represents the maximum value that
+ * the random integer generated should not exceed. This value is used to calculate the random integer
+ * by multiplying a random decimal between 0 and 1 with the `max` value and then flooring the result to
+ * get a
+ * @returns The code provided includes three different functions exported as part of a Node.js module.
+ * Here is a summary of what each function does:
+ */
 const { Mongoose } = require("mongoose");
 const Category = require("../models/Category");
 function getRandomInt(max) {
